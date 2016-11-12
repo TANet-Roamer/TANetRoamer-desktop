@@ -1,12 +1,11 @@
 const
   querystring = require('querystring'),
   Url = require('url'),
-  http = require('http'),
+  fetch = require('node-fetch'),
   globalValue = require('./globalValue');
 
 module.exports = class Account {
   constructor(option) {
-    console.log(option);
     /* initial*/
     this._id = option.id;
     this._pwd = option.pwd;
@@ -29,7 +28,6 @@ module.exports = class Account {
     const searchParams = querystring.stringify(this._apiData);
     return this._client(this._apiUrl, searchParams)
       .then((res) => {
-        console.log(res);
         const hash = decodeURI(new URL(res.url).search).replace(/^\?/, '').split('=');
 
         switch (hash.errmsg = hash[1]) {
@@ -67,6 +65,11 @@ module.exports = class Account {
   }
 
   _client(url, postData) {
+    return fetch(url, {
+      method: 'post',
+      body: postData,
+    });
+    /*
     const urlObj = Url.parse(url);
     const options = {
       hostname: urlObj.host,
@@ -101,6 +104,6 @@ module.exports = class Account {
       });
       req.write(postData);
       req.end();
-    });
+    });*/
   }
 }
