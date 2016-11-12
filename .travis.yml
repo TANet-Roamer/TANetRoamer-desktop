@@ -3,17 +3,13 @@ node_js:
   - "6"
 os: x64
 sudo: false
-env:
-  matrix:
-  - BROWSER=chromium EXT=zip
-  - BROWSER=firefox EXT=xpi
 before_script:
   - npm install grunt-cli -g
 script:
   - npm run dist
 deploy:
   provider: releases
-  file: NCUE-Edu.-System-Supporter-latest.${EXT}
+  file: NCUE-Edu.-System-Supporter-latest.exe
   skip_cleanup: true
   on:
     repo: ALiangLiang/TANetRoamer-desktop
@@ -29,3 +25,9 @@ install:
   - npm install npm -g
   - npm install electron-builder@next -g
   - npm install
+cache:
+  directories:
+  - node_modules
+  - app/node_modules
+  - "$HOME/.electron"
+  - "$HOME/.cache"
