@@ -1,16 +1,17 @@
 language: node_js
 node_js:
-  - "6"
+- '6'
 os: x64
 sudo: false
 script:
-  - npm run dist
+- npm run dist
 env:
-  - VER=0.0.1
+  global:
+  - secure: TXCnp5nMm7o0vlL8f+0nMIEui3ObFKDL8igCzhMcvsdXOeHfdPpfD4vZvGL3SGMirnyJsdYLkU11VOfkIBknWv6Em7XDSBQAw/edBfsmv+qYvepEXkBAd7DqGBlfKoF42wD7BQemRxc2ZQ6Pd4Us8CwouVYJjjHAPiJT+4UMtTVaq09BVFUh3qcSp81UZHMnswctuZq7OrBJWLHPZIQHE8LIchx1kp+VEYckpXEikxfKzTmDuwNPH094CfVtIBOSIhZo1XechSlhpFusiCafcc2bIUqbd0UzjA+26eKXHF2ppWS5qAzVGl6a2iX6dE5hLu+2GeAvkXdOFMw9ozYALERV2cmY+fw2RrOB08JqgiVFjKWauL9hsgTq2AlF0M5QPVB18B2zYz+JRm/B+lRHzNbnokHM7K6CQTQ80MpIrijD83FLCrxkdnL9hisI+SxWCNOUgonoETsmJ94f7Dd/BPYHI4vJVfz/ub5V7eQPIvlIVavJ5QJDauYtgzHvDCgCAN4SdqqEQgYW9F0Xhemnm8aSpfYFOAw+zKd4tAjutErVfSQFk3VdwvDeEboIk5dXyopOSqtKZVcdIQ5aSKyqcN5Y9gXvk7Pfq/VIL+zjkcN+rpmkTnROfU39PRzP9SwsIw8FdTfs5N4HCeOKvwfXebEwMPRdtssVKMlUnQ+J6us=
 deploy:
   provider: releases
-  api_key: "GITHUB OAUTH TOKEN"
-  file: dist/TANet Roamer 校園網路漫遊器 Setup ${VER}.exe
+  api_key: TXCnp5nMm7o0vlL8f+0nMIEui3ObFKDL8igCzhMcvsdXOeHfdPpfD4vZvGL3SGMirnyJsdYLkU11VOfkIBknWv6Em7XDSBQAw/edBfsmv+qYvepEXkBAd7DqGBlfKoF42wD7BQemRxc2ZQ6Pd4Us8CwouVYJjjHAPiJT+4UMtTVaq09BVFUh3qcSp81UZHMnswctuZq7OrBJWLHPZIQHE8LIchx1kp+VEYckpXEikxfKzTmDuwNPH094CfVtIBOSIhZo1XechSlhpFusiCafcc2bIUqbd0UzjA+26eKXHF2ppWS5qAzVGl6a2iX6dE5hLu+2GeAvkXdOFMw9ozYALERV2cmY+fw2RrOB08JqgiVFjKWauL9hsgTq2AlF0M5QPVB18B2zYz+JRm/B+lRHzNbnokHM7K6CQTQ80MpIrijD83FLCrxkdnL9hisI+SxWCNOUgonoETsmJ94f7Dd/BPYHI4vJVfz/ub5V7eQPIvlIVavJ5QJDauYtgzHvDCgCAN4SdqqEQgYW9F0Xhemnm8aSpfYFOAw+zKd4tAjutErVfSQFk3VdwvDeEboIk5dXyopOSqtKZVcdIQ5aSKyqcN5Y9gXvk7Pfq/VIL+zjkcN+rpmkTnROfU39PRzP9SwsIw8FdTfs5N4HCeOKvwfXebEwMPRdtssVKMlUnQ+J6us=
+  file: dist/TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe
   skip_cleanup: true
   on:
     repo: ALiangLiang/TANetRoamer-desktop
@@ -19,16 +20,19 @@ deploy:
 addons:
   apt:
     packages:
-      - xvfb
+    - xvfb
 install:
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-  - npm install npm -g
-  - npm install electron-builder@next -g
-  - npm install
+- export DISPLAY=':99.0'
+- Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+- npm install npm -g
+- npm install electron-builder@next -g
+- npm install
 cache:
   directories:
   - node_modules
   - app/node_modules
   - "$HOME/.electron"
   - "$HOME/.cache"
+before_install:
+- openssl aes-256-cbc -K $encrypted_eaadfb67ef34_key -iv $encrypted_eaadfb67ef34_iv
+  -in github_deploy_key.enc -out github_deploy_key -d

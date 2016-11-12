@@ -12,11 +12,11 @@
  - 記憶帳號密碼。
  - 一鍵登入校園 WI-FI ，方便快速。
 
-## 適用學校
- - 國立彰化師範大學
- - 國立中興大學
- - 國立中央大學
- - 國立中正大學
+## 支援學校 與 貢獻者
+ - 國立彰化師範大學 - ALiangLiang
+ - 國立中興大學 - ALiangLiang
+ - 國立中央大學 - ALiangLiang
+ - 國立中正大學 - BePsvPT (2016/11/13)
  - (其他校園待測試)
 
 ## 開發
@@ -24,7 +24,7 @@
 ### app/schools.json
 
 這個檔案是各校的設定檔，id 與 name 都已經準備好，就只差 url 與 data，url 為各校 WIFI 登入的 API 網址，data 則是傳送給 API 的資料，其中值為 %u 與 %p 的皆會被使用者設定的帳號與密碼取代。
-若有學校的登入流程複雜或特殊，請[開 issue](/ALiangLiang/TANetRoamer-desktop/issue/new) 討論是否更改程式結構。
+若有學校的登入流程複雜或特殊，請[開 issue](issue/new) 討論是否更改程式結構。
 
 ```javascript
 [{
@@ -44,11 +44,3 @@
 - [ ] 增加測試 scripts。
 - [ ] 偵測 SSID 變更，全自動登入。
 - [ ] 憑證驗證，防止偽造 WIFI 熱點。
-
-## 貢獻
-
-### 各校支援
- - 國立彰化師範大學 - ALiangLiang
- - 國立中興大學 - ALiangLiang
- - 國立中央大學 - ALiangLiang
- - 國立中正大學 - BePsvPT (2016/11/13)

@@ -1,0 +1,39 @@
+version: 0.0.{build}
+
+platform:
+  - x64
+
+cache:
+  - node_modules
+  - app\node_modules
+  - '%APPDATA%\npm-cache'
+  - '%USERPROFILE%\.electron'
+
+init:
+  - git config --global core.autocrlf input
+
+install:
+  - ps: Install-Product node 6 x64
+  - npm install npm -g
+  - npm install electron-builder@next
+  - npm install
+
+build_script:
+  - node --version
+  - npm --version
+  - npm run dist
+
+test: off
+
+deploy:
+  release: TANet Roamer 校園網路漫遊器-v$(appveyor_build_version)
+  description: 'Release description'
+  provider: GitHub
+  auth_token:
+    secure: b301eccf86416bae68fa5b2f31b0974c2eef9879
+  artifact: /\/dist/.*\.exe/            # upload all NuGet packages to release assets
+  draft: false
+  prerelease: true
+  on:
+    branch: master                 # release from master branch only
+    appveyor_repo_tag: true
