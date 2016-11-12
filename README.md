@@ -1,4 +1,5 @@
 # TANet Roamer [![Build Status](https://travis-ci.org/ALiangLiang/TANetRoamer-desktop.svg?branch=master)](https://travis-ci.org/ALiangLiang/TANetRoamer-desktop)
+[![Build status](https://ci.appveyor.com/api/projects/status/96rf3aqlwwc4es93?svg=true)](https://ci.appveyor.com/project/ALiangLiang/tanetroamer-desktop)
 
 目前需要各校同學的協助，讓大家都可以省下輸入帳號密碼的時間。協助請參考[開發](#開發 "開發")。
 
