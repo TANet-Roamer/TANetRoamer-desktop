@@ -55,7 +55,13 @@
 		"name" : "國立臺灣海洋大學"
 	}, {
 		"id" : "0013",
-		"name" : "國立中正大學"
+		"name" : "國立中正大學",
+		"apiUrl" : "https://wlc.ccu.edu.tw/login.html",
+		"data" : {
+			"username" : "%u",
+			"password" : "%p",
+			"buttonClicked" : 4
+		}
 	}, {
 		"id" : "0014",
 		"name" : "國立高雄師範大學"
@@ -406,7 +412,7 @@
 		"name" : "康寧大學"
 	}, {
 		"id" : "1125",
-		"name" : "中信金融管理學院"
+		"name" : "中信金融管理學院"
 	}, {
 		"id" : "1148",
 		"name" : "大漢技術學院"
