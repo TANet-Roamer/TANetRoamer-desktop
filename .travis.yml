@@ -5,6 +5,17 @@ os: x64
 sudo: false
 script:
   - npm run dist
+env:
+  - VER=0.0.1
+deploy:
+  provider: releases
+  api_key: "GITHUB OAUTH TOKEN"
+  file: dist/TANet Roamer 校園網路漫遊器 Setup ${VER}.exe
+  skip_cleanup: true
+  on:
+    repo: ALiangLiang/TANetRoamer-desktop
+    tags: true
+    all_branches: true
 addons:
   apt:
     packages:
