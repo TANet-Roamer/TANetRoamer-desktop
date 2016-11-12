@@ -1,0 +1,31 @@
+language: node_js
+node_js:
+  - "6"
+os: x64
+sudo: false
+env:
+  matrix:
+  - BROWSER=chromium EXT=zip
+  - BROWSER=firefox EXT=xpi
+before_script:
+  - npm install grunt-cli -g
+script:
+  - npm run dist
+deploy:
+  provider: releases
+  file: NCUE-Edu.-System-Supporter-latest.${EXT}
+  skip_cleanup: true
+  on:
+    repo: ALiangLiang/TANetRoamer-desktop
+    tags: true
+    all_branches: true
+addons:
+  apt:
+    packages:
+      - xvfb
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - npm install npm -g
+  - npm install electron-builder@next -g
+  - npm install

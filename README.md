@@ -1,5 +1,4 @@
 # TANet Roamer
-https://chrome.google.com/webstore/detail/tanet-roamer/oholmaopjilhledjkmfpolbbjoacmcak?hl=zh-TW
 
 ## 宗旨
 以最方便的操作流程，取得全台灣的 TANetRoaming WIFI 的漫遊認證。
