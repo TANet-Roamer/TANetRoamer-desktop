@@ -5,10 +5,10 @@ https://chrome.google.com/webstore/detail/tanet-roamer/oholmaopjilhledjkmfpolbbj
 以最方便的操作流程，取得全台灣的 TANetRoaming WIFI 的漫遊認證。
 
 ## 使用說明
-一鍵登入校園 WI-FI 的 Chrome APP，目前測試中。
+一鍵登入校園 WI-FI 的桌面應用程式，目前測試中。
 
 ## 特色
- - 記憶帳號密碼，存於 Google 帳戶，安全又方便。
+ - 記憶帳號密碼。
  - 一鍵登入校園 WI-FI ，方便快速。
 
 ## 適用學校
