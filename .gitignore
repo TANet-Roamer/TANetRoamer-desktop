@@ -1,0 +1,8 @@
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+/app/font/
+/app/fonts/
+/dist/
+node_modules

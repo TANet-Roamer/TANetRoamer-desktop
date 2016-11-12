@@ -1,0 +1,18 @@
+{
+    "name": "tanetroamer-desktop",
+    "productName": "TANet Roamer 校園網路漫遊器",
+    "version": "0.0.1",
+    "description": "一鍵登入校園 WI-FI 的桌面應用程式",
+    "homepage": "https://github.com/ALiangLiang/tanetroamer-desktop",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "ALiangLiang",
+    "license": "MIT",
+    "dependencies": {
+        "electron-json-storage": "^2.0.3",
+        "electron-main-notification": "ALiangLiang/electron-main-notification",
+        "universal-analytics": "^0.4.6"
+    }
+}
