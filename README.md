@@ -10,6 +10,14 @@
 
 ## 使用說明
 
+#### 下載與安裝
+
+至[下載頁面](https://github.com/ALiangLiang/TANetRoamer-desktop/releases/latest "下載頁面")下載安裝檔。
+
+Windows 的用戶請下載 TANet.Roamer.Setup.x.x.x.exe。
+
+Linux 的用戶請下載 tanetroamer-desktop-x.x.x-x86_64.AppImage。
+
 #### 設定
 
 安裝完後，第一次開啟程式，選擇所在的校園，並輸入帳號密碼後儲存。
