@@ -1,5 +1,7 @@
 version: v0.0.{build}
 
+skip_non_tags: true
+
 platform:
   - x64
 
@@ -25,13 +27,17 @@ build_script:
 
 test: off
 
+artifacts:
+- path: "C:\\projects\\tanetroamer-desktop\\app\\dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
+  name: release
+
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
   description: 'TANetRoamer-desktop Setup'
   provider: GitHub
   auth_token:
-    secure: b301eccf86416bae68fa5b2f31b0974c2eef9879
-  artifact: /dist\\.*\.exe/
+    secure: T0vp0zmF/fFtXqVg1xqXhVNieJujNoeT+TghaUDj64ChCpJj8oLgi8oxvf6Vvw4c
+  artifact: "C:\\projects\\tanetroamer-desktop\\app\\dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
   draft: false
   prerelease: false
   skip_cleanup: true
