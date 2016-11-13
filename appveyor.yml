@@ -1,3 +1,5 @@
+version: v0.0.1
+
 platform:
   - x64
 
@@ -30,7 +32,7 @@ deploy:
   artifact: /dist\\.*\.exe/
   draft: false
   prerelease: false
-  skip_cleanup: true 
+  skip_cleanup: true
   on:
     branch: master
     appveyor_repo_tag: true
