@@ -28,7 +28,7 @@ build_script:
 test: off
 
 artifacts:
-- path: "C:\\projects\\tanetroamer-desktop\\app\\dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
+- path: "dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
   name: release
 
 deploy:
@@ -37,7 +37,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: T0vp0zmF/fFtXqVg1xqXhVNieJujNoeT+TghaUDj64ChCpJj8oLgi8oxvf6Vvw4c
-  artifact: "C:\\projects\\tanetroamer-desktop\\app\\dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
+  artifact: "dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
   draft: false
   prerelease: false
   skip_cleanup: true
