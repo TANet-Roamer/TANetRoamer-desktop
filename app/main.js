@@ -29,15 +29,16 @@ function initUpdates() {
 
   autoUpdater.on('update-available', () => {
     console.log('update-available');
-    autoUpdater.quitAndInstall();
+
   });
 
   autoUpdater.on('update-not-available', () => {
     console.log('update-not-available');
   });
 
-  autoUpdater.on('update-downloaded', () => {
+  autoUpdater.on('update-downloaded', (a, b, c, d, e, quitAndInstall) => {
     console.log('update-downloaded');
+    quitAndInstall();
   });
 
   autoUpdater.checkForUpdates();
@@ -114,7 +115,7 @@ Promise.all([genUA(), readyPromise])
             visitor.event('login', 'failed').send();
           const noti = notify((status.isSuccess) ? globalValue.STRING_LOGIN_SUCCESS : globalValue.STRING_LOGIN_FAILED, {
             body: status.message
-          }, openSettingPage, app.quit);
+          }, openSettingPage /*, app.quit*/ );
         });
     });
   });

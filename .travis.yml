@@ -30,13 +30,6 @@ install:
 - npm install
 - build --version
 
-cache:
-  directories:
-  - node_modules
-  - app\node_modules
-  - "%APPDATA%\\npm-cache"
-  - "%USERPROFILE%\\.electron"
-
 deploy:
   provider: releases
   api_key:

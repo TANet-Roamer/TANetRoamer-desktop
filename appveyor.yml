@@ -9,12 +9,6 @@ environment:
 platform:
   - x64
 
-cache:
-  - node_modules
-  - app\node_modules
-  - '%APPDATA%\npm-cache'
-  - '%USERPROFILE%\.electron'
-
 init:
   - git config --global core.autocrlf input
 
@@ -28,6 +22,7 @@ build_script:
   - node --version
   - npm --version
   - npm run dist
+  - node release.js
 
 test: off
 
