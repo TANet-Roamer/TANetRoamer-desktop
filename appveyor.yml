@@ -23,18 +23,15 @@ build_script:
 
 test: off
 
-branches:
-  only:
-    - master
-
 deploy:
-  description: 'Release description'
   provider: GitHub
   auth_token:
     secure: b301eccf86416bae68fa5b2f31b0974c2eef9879
   artifact: /dist\\.*\.exe/
   draft: false
   prerelease: false
+  skip_cleanup: true 
   on:
     branch: master
     appveyor_repo_tag: true
+    tags: true
