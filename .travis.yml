@@ -28,6 +28,7 @@ install:
 - npm install npm -g
 - npm install electron-builder@next -g
 - npm install
+- build --version
 
 cache:
   directories:
@@ -42,7 +43,6 @@ deploy:
     secure: qiMQ9QLZabf7nWuP1nHTlrMSOLUw/cdBVtVei+9NMltVOQmDf58YFY4yT9sUT5L90aATb6bgBGDhae/dN035Wruo0dZm1kQXvC+0eCMr51IJ5ctTUAHTAu646nFSDUUIcB0Fy8nVYDIX4v+ol2swJz/bwRECFOcaqH2dumsuFjv2GkLBzG1ObexMGn1SJyZG4p3425HWkFv1ng+2IAMWCDWtfQjVLMd/bN+aMlE2L+C4T++dwErurroNn7PCOM9wiGt9xYFkL3QT9SIcz8EsWfe2tRsAsOSK+QBMfqYh8lWDcAALgW17VGgUs+2Jmdu4BmmFXwiiiWIG05EwlsNoKPTTU5jOeX56m/508Wp3FYWUxAzlgFkEnwrsFMNuD1wD2p+XcoZIieikCqmlrQUZinUCeVkDYIVaJeerR093MsT+ThX4hvMC1HF6Y8rNut1lY2zcOFgiHK67PGbjwtW2ucLe8/N01Q5dwQF1dVZSc7V9mnOuFO+Qk16vxryaXNNvtOYmlFMLRxhXbb+EPzFcfBtgM8wkztksWhEKQ73UCq45Pj/bMmr5Y8J4AQ1LKOmmjibyr7MVbpZU0zuwN1BK3ipVu67uUxUyk1KoYSrfx2r2df/Ioe4AW/By9v2rqDiWSFnMlAJ3BUWvw5o4waUPTRQu14OcfDzZKP/RUUaRcR8=
   file:
     - "/home/travis/build/ALiangLiang/TANetRoamer-desktop/${FILE_TO_UPLOAD}"
-    - "/home/travis/build/ALiangLiang/TANetRoamer-desktop/dist/latest.yml"
   skip_cleanup: true
   on:
     branch: master

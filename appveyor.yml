@@ -32,8 +32,10 @@ build_script:
 test: off
 
 artifacts:
-- path: "dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
+- path: "dist\\*.exe"
   name: release
+- path: "dist\\latest.yml"
+  name: latest
 
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
