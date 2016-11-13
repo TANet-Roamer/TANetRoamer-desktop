@@ -6,3 +6,9 @@ Desktop.ini
 /app/fonts/
 /dist/
 node_modules
+
+*.cer
+*.pfx
+*.pvk
+
+npm-debug.log

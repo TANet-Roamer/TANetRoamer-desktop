@@ -1,8 +1,11 @@
+if (require('electron-squirrel-startup')) return;
 const {
   app,
   BrowserWindow,
   ipcMain
-} = require('electron'),
+} = require('electron'), {
+    autoUpdater
+  } = require('electron-auto-updater'),
   path = require('path'),
   url = require('url'),
   storage = require('electron-json-storage'),
@@ -15,6 +18,30 @@ const
   globalValue = require('./globalValue');
 
 let win, visitor;
+
+// if (require('electron-squirrel-startup')) return;
+
+function initUpdates() {
+
+  autoUpdater.on('checking-for-update', () => {
+    console.log('checking-for-update');
+  });
+
+  autoUpdater.on('update-available', () => {
+    console.log('update-available');
+    autoUpdater.quitAndInstall();
+  });
+
+  autoUpdater.on('update-not-available', () => {
+    console.log('update-not-available');
+  });
+
+  autoUpdater.on('update-downloaded', () => {
+    console.log('update-downloaded');
+  });
+
+  autoUpdater.checkForUpdates();
+}
 
 function genUuid() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -60,6 +87,7 @@ function genUA() {
 
 const readyPromise = new Promise((resolve, reject) => {
   app.on('ready', () => {
+    initUpdates()
     resolve();
   });
 });
