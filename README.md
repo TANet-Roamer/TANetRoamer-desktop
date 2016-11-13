@@ -1,12 +1,14 @@
 # TANet Roamer
 
-[![Build Status](https://travis-ci.org/ALiangLiang/TANetRoamer-desktop.svg?branch=master)](https://travis-ci.org/ALiangLiang/TANetRoamer-desktop) [![Build status](https://ci.appveyor.com/api/projects/status/96rf3aqlwwc4es93?svg=true)](https://ci.appveyor.com/project/ALiangLiang/tanetroamer-desktop)
-
-目前需要各校同學的協助，讓大家都可以省下輸入帳號密碼的時間。協助請參考[開發](#開發 "開發")。
+[![Build Status](https://travis-ci.org/ALiangLiang/TANetRoamer-desktop.svg?branch=master)](https://travis-ci.org/ALiangLiang/TANetRoamer-desktop) [![Build status](https://ci.appveyor.com/api/projects/status/96rf3aqlwwc4es93?svg=true)](https://ci.appveyor.com/project/ALiangLiang/tanetroamer-desktop) [![GitHub release](https://img.shields.io/github/release/ALiangLiang/TANetRoamer-desktop.svg)](https://github.com/ALiangLiang/TANetRoamer-desktop)[![Github All Releases](https://img.shields.io/github/downloads/ALiangLiang/TANetRoamer-desktop/total.svg)](https://github.com/ALiangLiang/TANetRoamer-desktop/)[![license](https://img.shields.io/github/license/ALiangLiang/TANetRoamer-desktop.svg)](https://github.com/ALiangLiang/TANetRoamer-desktop/blob/master/LICENSE)
 
 ## 宗旨
 
 以最方便的操作流程，取得全台灣的 TANetRoaming WIFI 的漫遊認證。
+
+![設定視窗](screenshot.png) ![登入通知](screenshot2.png)
+
+目前需要各校同學的協助，讓大家都可以省下輸入帳號密碼的時間。協助請參考[開發](#開發 "開發")。
 
 ## 使用說明
 
@@ -14,8 +16,8 @@
 
 ## 特色
 
-- 記憶帳號密碼。
 - 一鍵登入校園 WI-FI ，方便快速。
+- 自動更新。
 
 ## 支援學校 與 貢獻者
 
@@ -49,7 +51,8 @@
 
 - [ ] 偵測 SSID 變更，全自動登入。
 - [ ] 產品 icon。
-- [X] 自動更新。
+- [x] 自動更新。
+- [ ] 安全記憶帳號密碼。
 - [ ] mac 版本支援。
 - [ ] 增加測試 scripts。
 - [ ] 憑證驗證，防止偽造 WIFI 熱點。
