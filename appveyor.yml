@@ -2,6 +2,10 @@ version: v0.0.{build}
 
 skip_non_tags: true
 
+environment:
+  access_token:
+    secure: 1tvNi1Tb8CC7s3rWEKQpdZj+OfLog51KdRAqX1QJ5RWC+7NY27vpSqbKRzM/TZOs
+
 platform:
   - x64
 
@@ -43,6 +47,4 @@ deploy:
   skip_cleanup: true
   force_update: true
   on:
-    branch: master
     appveyor_repo_tag: true
-    tags: true
