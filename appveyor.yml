@@ -1,5 +1,3 @@
-version: 0.0.{build}
-
 platform:
   - x64
 
@@ -36,7 +34,7 @@ deploy:
     secure: b301eccf86416bae68fa5b2f31b0974c2eef9879
   artifact: /dist\\.*\.exe/
   draft: false
-  prerelease: true
+  prerelease: false
   on:
     branch: master
     appveyor_repo_tag: true
