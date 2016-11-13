@@ -36,11 +36,12 @@ deploy:
   description: 'TANetRoamer-desktop Setup'
   provider: GitHub
   auth_token:
-    secure: T0vp0zmF/fFtXqVg1xqXhVNieJujNoeT+TghaUDj64ChCpJj8oLgi8oxvf6Vvw4c
+    secure: 1tvNi1Tb8CC7s3rWEKQpdZj+OfLog51KdRAqX1QJ5RWC+7NY27vpSqbKRzM/TZOs
   artifact: "dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
   draft: false
   prerelease: false
   skip_cleanup: true
+  force_update: true
   on:
     branch: master
     appveyor_repo_tag: true
