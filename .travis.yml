@@ -43,3 +43,4 @@ deploy:
   on:
     branch: master
     repo: ALiangLiang/TANetRoamer-desktop
+    tags: true
