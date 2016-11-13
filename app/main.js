@@ -17,27 +17,51 @@ const
   Account = require('./account.js'),
   globalValue = require('./globalValue');
 
-let win, visitor;
+let win, visitor, eventNum;
 
-// if (require('electron-squirrel-startup')) return;
+class EventNum {
+  constructor(num) {
+    this._num = num || 0;
+  }
+  inc() {
+    this._num = this._num + 1;
+    console.log('eventNum: ', this._num);
+  }
+  dec() {
+    this._num = this._num - 1;
+    console.log('eventNum: ', this._num);
+    if (this._num <= 0) {
+      console.log('close');
+      app.quit();
+    }
+  }
+}
 
 function initUpdates() {
 
   autoUpdater.on('checking-for-update', () => {
     console.log('checking-for-update');
+    eventNum.inc();
   });
 
   autoUpdater.on('update-available', () => {
     console.log('update-available');
-
+    notify('TANet Roamer 校園網路漫遊器', {
+      body: '發現新的版本，下載新版本安裝檔中。'
+    }, openSettingPage);
   });
 
   autoUpdater.on('update-not-available', () => {
     console.log('update-not-available');
+    eventNum.dec();
   });
 
-  autoUpdater.on('update-downloaded', (a, b, c, d, e, quitAndInstall) => {
+  autoUpdater.on('update-downloaded', (a, b, version, d, e, quitAndInstall) => {
     console.log('update-downloaded');
+    eventNum.inc();
+    notify('TANet Roamer 校園網路漫遊器', {
+      body: `安裝檔下載完成，開始安裝新版本 v${version}`
+    });
     quitAndInstall();
   });
 
@@ -53,6 +77,7 @@ function genUuid() {
 }
 
 function openSettingPage() {
+  eventNum.inc();
   visitor.event('main', 'openSettingPage').send();
   win = new BrowserWindow({
     width: 240,
@@ -67,7 +92,7 @@ function openSettingPage() {
 
   win.on('closed', () => {
     win = null;
-    app.quit();
+    eventNum.dec();
   });
 }
 
@@ -88,13 +113,15 @@ function genUA() {
 
 const readyPromise = new Promise((resolve, reject) => {
   app.on('ready', () => {
-    initUpdates()
+    eventNum = new EventNum();
+    initUpdates();
     resolve();
   });
 });
 
 Promise.all([genUA(), readyPromise])
   .then(() => {
+    eventNum.inc();
     storage.get('user', (err, data) => {
       if (!data || !data.id || !data.password || !data.school_place)
         return openSettingPage();
@@ -115,7 +142,7 @@ Promise.all([genUA(), readyPromise])
             visitor.event('login', 'failed').send();
           const noti = notify((status.isSuccess) ? globalValue.STRING_LOGIN_SUCCESS : globalValue.STRING_LOGIN_FAILED, {
             body: status.message
-          }, openSettingPage /*, app.quit*/ );
+          }, openSettingPage, eventNum.dec());
         });
     });
   });

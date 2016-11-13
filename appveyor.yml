@@ -21,8 +21,7 @@ install:
 build_script:
   - node --version
   - npm --version
-  - npm run dist
-  - node release.js
+  - npm run release
 
 test: off
 

@@ -69,41 +69,5 @@ module.exports = class Account {
       method: 'post',
       body: postData,
     });
-    /*
-    const urlObj = Url.parse(url);
-    const options = {
-      hostname: urlObj.host,
-      port: 80,
-      path: urlObj.path,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': Buffer.byteLength(postData)
-      }
-    };
-
-    return new Promise((resolve, reject) => {
-      const req = http.request(options, () => {
-        let str = ''
-        res.setEncoding('utf8');
-        res.on('data', function(chunk) {
-          str += chunk;
-        });
-
-        res.on('end', function() {
-          console.log(str);
-          resolve({
-            body: str,
-            url: res.url,
-          });
-        });
-      });
-      req.on('error', (e) => {
-        console.log(`problem with request: ${e.message}`);
-        reject(e);
-      });
-      req.write(postData);
-      req.end();
-    });*/
   }
 }

@@ -2,6 +2,7 @@
     "scripts": {
         "pack": "build --dir",
         "dist": "build",
+        "release": "build && node release",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
