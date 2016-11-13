@@ -33,7 +33,7 @@ test: off
 
 artifacts:
 - path: "dist\\TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
-  name: "TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
+  name: release
 
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
@@ -41,10 +41,8 @@ deploy:
   provider: GitHub
   auth_token:
     secure: 1tvNi1Tb8CC7s3rWEKQpdZj+OfLog51KdRAqX1QJ5RWC+7NY27vpSqbKRzM/TZOs
-  artifact: "TANet Roamer 校園網路漫遊器 Setup 0.0.1.exe"
   draft: false
   prerelease: false
   skip_cleanup: true
-  force_update: true
   on:
     appveyor_repo_tag: true
