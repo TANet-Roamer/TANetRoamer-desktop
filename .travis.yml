@@ -27,7 +27,7 @@ install:
 before_script:
   - APP_VERSION="$(node version)" # eg 0.0.1
   - RELEASE_VERSION="v$(node version)" # eg v0.0.1
-  - APP_SHORTNAME="v$(node productShortName)" # eg TANet-Roamer
+  - APP_SHORTNAME="$(node productShortName)" # eg TANet-Roamer
 
 script:
   - npm test

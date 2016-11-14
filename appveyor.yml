@@ -27,9 +27,9 @@ install:
 build_script:
   - node --version
   - npm --version
-  - APP_VERSION="$(node version)" # eg 0.0.1
-  - RELEASE_VERSION="v$(node version)" # eg v0.0.1
-  - APP_SHORTNAME="v$(node productShortName)" # eg TANet-Roamer
+  - for /f %i in ('node version') do set APP_VERSION=%i # eg 0.0.1
+  - for /f %i in ('node version') do set RELEASE_VERSION=v%i # eg v0.0.1
+  - for /f %i in ('node productShortName') do set APP_SHORTNAME=%i # TANet-Roamer
 
 test: off
 
@@ -38,7 +38,7 @@ before_deploy:
 
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
-  description: "${APP_SHORTNAME} Setup ${RELEASE_VERSION}" # eg TANet-Roamer Setup v0.0.1
+  description: "$(APP_SHORTNAME) Setup $(RELEASE_VERSION) {message}" # eg TANet-Roamer Setup v0.0.1
   provider: GitHub
   auth_token:
     secure: 1tvNi1Tb8CC7s3rWEKQpdZj+OfLog51KdRAqX1QJ5RWC+7NY27vpSqbKRzM/TZOs
