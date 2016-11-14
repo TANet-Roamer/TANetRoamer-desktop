@@ -1,43 +1,47 @@
 <html>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css">
-</head>
-
-<body>
-    <div class="container">
-        <form id="form">
-            <div class="input-field col s6">
-                <label for="school_place">校名</label>
-                <select class=" browser-default" id="school_place" name="school_place">
-        <option value="" disabled selected>選擇所在的校園</option>
-      </select>
-            </div>
-            <div class="input-field col s6">
-                <label for="school_studing">校名</label>
-                <select class=" browser-default" id="school_studing" name="school_studing">
-        <option value="" disabled selected>選擇所屬學校</option>
-      </select>
-            </div>
-            <div class="input-field col s6">
-                <input name="id" placeholder="Placeholder" id="id" type="text" class="validate">
-                <label for="id">帳號</label>
-            </div>
-            <div class="input-field col s6">
-                <input name="pwd" placeholder="Placeholder" id="pwd" type="password" class="validate">
-                <label for="pwd">密碼</label>
-            </div>
-            <p>
-                <input name="autologin" type="checkbox" id="autologin" disabled />
-                <label for="autologin">下次自動登入</label>
-            </p>
-            <button class="btn waves-effect waves-light" type="submit">儲存</button>
-        </form>
-    </div>
-    <script src="setting.js"></script>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <form id="form">
+                <div class="input-field">
+                    <select class=" browser-default" id="school_place" name="school_place">
+                        <option value="" disabled selected>選擇所在的校園</option>
+                    </select>
+                </div>
+                <div class="input-field">
+                    <select class=" browser-default" id="school_studing" name="school_studing">
+                        <option value="" disabled selected>選擇所屬學校</option>
+                    </select>
+                </div>
+                <div class="input-field">
+                    <input name="id" placeholder="請輸入帳號(學號/信箱)" id="id" type="text" class="validate">
+                    <label for="id">帳號</label>
+                </div>
+                <div class="input-field">
+                    <input name="pwd" placeholder="請輸入密碼" id="pwd" type="password" class="validate">
+                    <label for="pwd">密碼</label>
+                </div>
+                <p>
+                    <input name="autologin" type="checkbox" id="autologin" disabled/>
+                    <label for="autologin">下次自動登入</label>
+                </p>
+                <button class="btn waves-effect waves-light" type="submit">儲存</button>
+            </form>
+        </div>
+        <!-- Insert this line above script imports  -->
+        <script>if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+        </script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script src="setting.js"></script>
+        <!-- Insert this line after script imports -->
+        <script>if (window.module) module = window.module;</script>
+    </body>
 
 </html>
