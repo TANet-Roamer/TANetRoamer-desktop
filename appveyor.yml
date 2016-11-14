@@ -27,11 +27,11 @@ install:
 build_script:
   - node --version
   - npm --version
+  - npm run release # build and rename exe file
 
 test: off
 
 before_deploy:
-  - npm run release # build and rename exe file
 
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
