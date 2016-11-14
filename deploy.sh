@@ -11,8 +11,8 @@ msg="rebuilding site `date`"
 if [ $# -eq 1 ]
   then msg="$1"
 fi
+mv public/* . -r
 git commit -m "$msg"
 
 # Push source and build repos.
-git push origin master
-git subtree push --prefix=public https://github.com/ALiangLiang/TANetRoamer-desktop.git gh-pages
+git push origin gh-pages
