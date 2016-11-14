@@ -33,8 +33,10 @@ for (let i in schools) {
   const ele = document.createElement('option');
   ele.value = schools[i].id;
   ele.innerText = schools[i].name;
-  school_place.add(ele.cloneNode(true));
   school_studing.add(ele.cloneNode(true));
+  if (hasData(schools[i])) {
+    school_place.add(ele.cloneNode(true));
+  }
 }
 recallInfo();
 /* 回憶表單資訊 */
@@ -47,4 +49,8 @@ function recallInfo() {
     targets[3].value = data.password;
     targets[4].checked = data.autologin;
   });
+}
+
+function hasData (school) {
+  return school.apiUrl && school.data;
 }
