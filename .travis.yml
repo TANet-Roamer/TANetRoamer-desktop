@@ -11,10 +11,14 @@ env:
   global:
   - secure: TXCnp5nMm7o0vlL8f+0nMIEui3ObFKDL8igCzhMcvsdXOeHfdPpfD4vZvGL3SGMirnyJsdYLkU11VOfkIBknWv6Em7XDSBQAw/edBfsmv+qYvepEXkBAd7DqGBlfKoF42wD7BQemRxc2ZQ6Pd4Us8CwouVYJjjHAPiJT+4UMtTVaq09BVFUh3qcSp81UZHMnswctuZq7OrBJWLHPZIQHE8LIchx1kp+VEYckpXEikxfKzTmDuwNPH094CfVtIBOSIhZo1XechSlhpFusiCafcc2bIUqbd0UzjA+26eKXHF2ppWS5qAzVGl6a2iX6dE5hLu+2GeAvkXdOFMw9ozYALERV2cmY+fw2RrOB08JqgiVFjKWauL9hsgTq2AlF0M5QPVB18B2zYz+JRm/B+lRHzNbnokHM7K6CQTQ80MpIrijD83FLCrxkdnL9hisI+SxWCNOUgonoETsmJ94f7Dd/BPYHI4vJVfz/ub5V7eQPIvlIVavJ5QJDauYtgzHvDCgCAN4SdqqEQgYW9F0Xhemnm8aSpfYFOAw+zKd4tAjutErVfSQFk3VdwvDeEboIk5dXyopOSqtKZVcdIQ5aSKyqcN5Y9gXvk7Pfq/VIL+zjkcN+rpmkTnROfU39PRzP9SwsIw8FdTfs5N4HCeOKvwfXebEwMPRdtssVKMlUnQ+J6us=
 
+branches:
+  except:
+    - gh-pages
+
 addons:
   apt:
     packages:
-    - xvfb
+      - xvfb
 
 install:
   - export DISPLAY=':99.0'
