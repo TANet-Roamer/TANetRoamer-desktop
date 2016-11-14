@@ -43,11 +43,21 @@ recallInfo();
 function recallInfo() {
   const targets = form.querySelectorAll('[name]');
   storage.get('user', (err, data) => {
-    targets[0].querySelector('[value="' + data.school_place + '"]').selected = true;
-    targets[1].querySelector('[value="' + data.school_studing + '"]').selected = true;
-    targets[2].value = data.id;
-    targets[3].value = data.password;
-    targets[4].checked = data.autologin;
+    if (data.school_place) {
+      targets[0].querySelector('[value="' + data.school_place + '"]').selected = true;
+    }
+    if (data.school_studing) {
+      targets[ 1 ].querySelector('[value="' + data.school_studing + '"]').selected = true;
+    }
+    if (data.id) {
+      targets[2].value = data.id;
+    }
+    if (data.password) {
+      targets[3].value = data.password;
+    }
+    if (data.autologin) {
+      targets[4].checked = data.autologin;
+    }
   });
 }
 
