@@ -4,7 +4,7 @@
 
 以最方便的操作流程，取得全台灣的 TANetRoaming WIFI 的漫遊認證。
 
-![設定視窗](screenshot.png) ![登入通知](screenshot2.png)
+![設定視窗](img/screenshot.png) ![登入通知](img/screenshot2.png)
 
 目前需要各校同學的協助，讓大家都可以省下輸入帳號密碼的時間。協助請參考[開發](#開發 "開發")。
 
@@ -16,7 +16,7 @@
 
 Windows 的用戶請下載 TANet.Roamer.Setup.x.x.x.exe。
 
-Linux 的用戶請下載 tanetroamer-desktop-x.x.x-x86_64.AppImage。
+Linux 的用戶請下載 tanetroamer-desktop-x.x.x-x86_64.[tar.xz/tar.gz/tar.bz2/AppImage]。
 
 #### 設定
 

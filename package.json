@@ -23,16 +23,18 @@
             "legalTrademarks": "ALiangLiang"
         },
         "mac": {},
-        "linux": {},
+        "linux": {
+            "target": ["tar.xz", "tar.gz", "tar.bz2", "AppImage"]
+        },
         "publish": [{
+            "provider": "generic",
+            "owner": "ALiangLiang",
+            "url": "https://gentle-savannah-86014.herokuapp.com/"
+        }, {
             "provider": "github",
             "owner": "ALiangLiang",
             "repo": "TANetRoamer-desktop",
             "vPrefixedTagName": true
-        }, {
-            "provider": "generic",
-            "owner": "ALiangLiang",
-            "url": "https://s3.amazonaws.com/bucket_name"
         }]
     }
 }

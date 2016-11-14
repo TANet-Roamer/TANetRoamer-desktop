@@ -114,7 +114,6 @@ function genUA() {
 const readyPromise = new Promise((resolve, reject) => {
   app.on('ready', () => {
     eventNum = new EventNum();
-    initUpdates();
     resolve();
   });
 });
@@ -137,12 +136,14 @@ Promise.all([genUA(), readyPromise])
       /* 登入 */
       account.login()
         .then((status) => {
-          (status.isSuccess) ?
-          visitor.event('login', 'success').send():
+          if (status.isSuccess) {
+            initUpdates();
+            visitor.event('login', 'success').send()
+          } else
             visitor.event('login', 'failed').send();
           const noti = notify((status.isSuccess) ? globalValue.STRING_LOGIN_SUCCESS : globalValue.STRING_LOGIN_FAILED, {
             body: status.message
-          }, openSettingPage, eventNum.dec());
+          }, openSettingPage, () => eventNum.dec());
         });
     });
   });
