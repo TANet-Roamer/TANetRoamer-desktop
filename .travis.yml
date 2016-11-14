@@ -38,8 +38,10 @@ script:
 
 before_deploy:
   - npm run dist # build
-  - tar zcvf "dist/${APP_SHORTNAME}-${APP_VERSION}-x86_64.tar.gz" dist/linux-unpacked # pack tar.gz
-  - mv "dist/tanetroamer-desktop-${APP_VERSION}-x86_64.AppImage" "dist/${APP_SHORTNAME}-${APP_VERSION}-x86_64.AppImage" # rename AppImage
+  - cd dist
+  - tar zcvf "${APP_SHORTNAME}-${APP_VERSION}-x86_64.tar.gz" linux-unpacked # pack tar.gz
+  - mv "tanetroamer-desktop-${APP_VERSION}-x86_64.AppImage" "${APP_SHORTNAME}-${APP_VERSION}-x86_64.AppImage" # rename AppImage
+  - cd ..
   - export FILE_TO_UPLOAD_TAR_GZ="dist/${APP_SHORTNAME}-${APP_VERSION}-x86_64.tar.gz"
   - export FILE_TO_UPLOAD_APPIMAGE="dist/${APP_SHORTNAME}-${APP_VERSION}-x86_64.AppImage"
 
