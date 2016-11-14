@@ -16,5 +16,5 @@ fs.readFile(base + 'latest.yml', {
     raw[1] = 'path: ' + newName;
     const content = raw.join('\n');
     fs.writeFile(base + 'latest.yml', content, () => console.log(content));
-  })
+  });
 });
