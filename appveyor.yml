@@ -9,6 +9,12 @@ environment:
 platform:
   - x64
 
+artifacts:
+  - path: "dist\\*.exe"
+    name: release
+  - path: "dist\\latest.yml"
+    name: latest
+
 init:
   - git config --global core.autocrlf input
 
@@ -21,19 +27,18 @@ install:
 build_script:
   - node --version
   - npm --version
-  - npm run release
+  - APP_VERSION="$(node version)" # eg 0.0.1
+  - RELEASE_VERSION="v$(node version)" # eg v0.0.1
+  - APP_SHORTNAME="v$(node productShortName)" # eg TANet-Roamer
 
 test: off
 
-artifacts:
-- path: "dist\\*.exe"
-  name: release
-- path: "dist\\latest.yml"
-  name: latest
+before_deploy:
+  - npm run release # build and rename exe file
 
 deploy:
   release: $(APPVEYOR_REPO_TAG_NAME)
-  description: 'TANetRoamer-desktop Setup'
+  description: "${APP_SHORTNAME} Setup ${RELEASE_VERSION}" # eg TANet-Roamer Setup v0.0.1
   provider: GitHub
   auth_token:
     secure: 1tvNi1Tb8CC7s3rWEKQpdZj+OfLog51KdRAqX1QJ5RWC+7NY27vpSqbKRzM/TZOs
