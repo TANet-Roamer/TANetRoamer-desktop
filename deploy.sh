@@ -11,7 +11,7 @@ msg="rebuilding site `date`"
 if [ $# -eq 1 ]
   then msg="$1"
 fi
-mv public/* . -r
+mv -f public/* .
 git commit -m "$msg"
 
 # Push source and build repos.
