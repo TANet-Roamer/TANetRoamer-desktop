@@ -11,3 +11,4 @@ node_modules
 *.pvk
 
 npm-debug.log
+tmp.bat

@@ -9,7 +9,10 @@
     "scripts": {
         "test": "echo \"no test specified\""
     },
-    "author": "ALiangLiang",
+    "author": {
+        "name": "ALiangLiang",
+        "email": "david27072183@gmail.com"
+    },
     "license": "MIT",
     "dependencies": {
         "electron-auto-updater": "^0.5.1",
