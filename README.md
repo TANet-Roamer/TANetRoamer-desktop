@@ -59,6 +59,7 @@ Linux 的用戶請下載 tanetroamer-desktop-x.x.x-x86_64.[tar.xz/tar.gz/tar.bz2
 [{
   "id" : "0015", // 學校代碼，依照 https://ulist.moe.gov.tw/ 公布資訊為主
   "name" : "國立彰化師範大學", // 學校名稱
+  "realm": "mail.ncue.edu.tw", // realm，通常為學生信箱網域。
   "url" : "http://securelogin.arubanetworks.com/auth/index.html/u", // 登入 API 網址，有可能視學校而有所不同。
   "data" : { // 送 API 的資料，視學校 API 而有所不同，此為彰師大設定。
     "user_foo" : "%u", // 值為 '%u'，指的是帳號

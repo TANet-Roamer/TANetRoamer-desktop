@@ -1,11 +1,15 @@
 const
   querystring = require('querystring'),
+  EventEmitter = require('events'),
   Url = require('url'),
   fetch = require('node-fetch'),
   globalValue = require('./globalValue');
 
-module.exports = class Account {
+module.exports = class Account extends EventEmitter {
+
   constructor(option) {
+    super();
+
     /* initial*/
     this._id = option.id;
     this._pwd = option.pwd;
@@ -25,42 +29,47 @@ module.exports = class Account {
 
   /* 使用 API 登入。 */
   login() {
+    this.emit('loginStart');
     const searchParams = querystring.stringify(this._apiData);
     return this._client(this._apiUrl, searchParams)
       .then((res) => {
         const hash = decodeURI(new URL(res.url).search).replace(/^\?/, '').split('=');
-
-        switch (hash.errmsg = hash[1]) {
+        let result = {};
+        switch (hash[1]) {
           case globalValue.LOGIN_SUCCESS:
-            return {
+            result = {
               isSuccess: true,
               message: globalValue.STRING_MSG_LOGIN_SUCCESS,
             };
             break;
           case globalValue.LOGIN_WRONG_PASSWORD:
-            return {
+            result = {
               isSuccess: false,
               message: globalValue.STRING_MSG_WRONG_PASSWORD,
             };
             break;
           case globalValue.LOGIN_NO_INFORMATION:
-            return {
+            result = {
               isSuccess: false,
               message: '',
             };
             break;
           case globalValue.ONLY_ONE_USER:
-            return {
+            result = {
               isSuccess: false,
               message: globalValue.STRING_MSG_ONLY_ONE_USER,
             };
             break;
         }
+        this.emit('loginCompleted', result);
+        return result;
       }, () => {
-        return {
+        const result = {
           isSuccess: false,
           message: globalValue.STRING_MSG_WRONG_SSID,
-        }
+        };
+        this.emit('loginCompleted', result);
+        return result;
       });
   }
 
@@ -70,4 +79,5 @@ module.exports = class Account {
       body: postData,
     });
   }
-}
+
+};

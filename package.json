@@ -1,5 +1,6 @@
 {
     "scripts": {
+        "run": "electron app",
         "pack": "build --dir",
         "dist": "build",
         "release": "build && node release",
@@ -28,14 +29,14 @@
             "target": ["tar.xz", "tar.gz", "tar.bz2", "AppImage"]
         },
         "publish": [{
-            "provider": "generic",
-            "owner": "ALiangLiang",
-            "url": "https://gentle-savannah-86014.herokuapp.com/"
-        }, {
             "provider": "github",
             "owner": "ALiangLiang",
             "repo": "TANetRoamer-desktop",
             "vPrefixedTagName": true
+        }, {
+            "provider": "generic",
+            "owner": "ALiangLiang",
+            "url": "https://gentle-savannah-86014.herokuapp.com/"
         }]
     }
 }

@@ -1,15 +1,17 @@
 if (require('electron-squirrel-startup')) return;
-const {
-  app,
-  BrowserWindow,
-  ipcMain
-} = require('electron'), {
-    autoUpdater
-  } = require('electron-auto-updater'),
+const
   path = require('path'),
   url = require('url'),
+  {
+    app,
+    BrowserWindow,
+    ipcMain
+  } = require('electron'),
+  {
+    autoUpdater
+  } = require('electron-auto-updater'),
   storage = require('electron-json-storage'),
-  notify = require('electron-main-notification'),
+  Notification = require('electron-native-notification'),
   ua = require('universal-analytics');
 
 const
@@ -17,49 +19,31 @@ const
   Account = require('./account.js'),
   globalValue = require('./globalValue');
 
-let win, visitor, eventNum;
+process.env.PRODUCT_NAME = require('./package.json').productName;
 
-class EventNum {
-  constructor(num) {
-    this._num = num || 0;
-  }
-  inc() {
-    this._num = this._num + 1;
-    console.log('eventNum: ', this._num);
-  }
-  dec() {
-    this._num = this._num - 1;
-    console.log('eventNum: ', this._num);
-    if (this._num <= 0) {
-      console.log('close');
-      app.quit();
-    }
-  }
-}
+let win, visitor;
 
 function initUpdates() {
 
   autoUpdater.on('checking-for-update', () => {
     console.log('checking-for-update');
-    eventNum.inc();
   });
 
   autoUpdater.on('update-available', () => {
     console.log('update-available');
-    notify('TANet Roamer 校園網路漫遊器', {
+    const noti = new Notification('TANet Roamer 校園網路漫遊器', {
       body: '發現新的版本，下載新版本安裝檔中。'
-    }, openSettingPage);
+    });
+    noti.once('click', () => openSettingPage());
   });
 
   autoUpdater.on('update-not-available', () => {
     console.log('update-not-available');
-    eventNum.dec();
   });
 
   autoUpdater.on('update-downloaded', (a, b, version, d, e, quitAndInstall) => {
     console.log('update-downloaded');
-    eventNum.inc();
-    notify('TANet Roamer 校園網路漫遊器', {
+    new Notification('TANet Roamer 校園網路漫遊器', {
       body: `安裝檔下載完成，開始安裝新版本 v${version}`
     });
     quitAndInstall();
@@ -77,23 +61,19 @@ function genUuid() {
 }
 
 function openSettingPage() {
-  eventNum.inc();
   visitor.event('main', 'openSettingPage').send();
   win = new BrowserWindow({
-    width: 240,
-    height: 420
+    width: 360,
+    height: 440,
+    title: process.env.PRODUCT_NAME,
+    resizable: false,
   });
-
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'setting.html'),
     protocol: 'file:',
     slashes: true
   }));
-
-  win.on('closed', () => {
-    win = null;
-    eventNum.dec();
-  });
+  win.on('closed', () => win = null);
 }
 
 function genUA() {
@@ -112,38 +92,63 @@ function genUA() {
 }
 
 const readyPromise = new Promise((resolve, reject) => {
-  app.on('ready', () => {
-    eventNum = new EventNum();
-    resolve();
-  });
+  app.on('ready', () => resolve());
 });
 
-Promise.all([genUA(), readyPromise])
-  .then(() => {
-    eventNum.inc();
-    storage.get('user', (err, data) => {
-      if (!data || !data.id || !data.password || !data.school_place)
-        return openSettingPage();
-      const cur_school = schools.find((e) => e.id === '0015');
-      const account = new Account({
-        id: data.id,
-        pwd: data.password,
-        apiUrl: 'http://securelogin.arubanetworks.com/auth/index.html/u',
-        apiDataPattern: cur_school.data,
-      });
-      visitor = ua('UA-87283965-1', data.id);
-      visitor.event('login', 'login').send();
-      /* 登入 */
-      account.login()
-        .then((status) => {
-          if (status.isSuccess) {
-            initUpdates();
-            visitor.event('login', 'success').send()
-          } else
-            visitor.event('login', 'failed').send();
-          const noti = notify((status.isSuccess) ? globalValue.STRING_LOGIN_SUCCESS : globalValue.STRING_LOGIN_FAILED, {
-            body: status.message
-          }, openSettingPage, () => eventNum.dec());
-        });
+const login = () => {
+  storage.get('user', (err, data) => {
+    if (!data || !data.user || !data.pwd)
+      return openSettingPage();
+    const DEFAULT_SCHOOL_CONFIG = {
+      id: '9999',
+      name: '',
+      apiUrl: 'http://securelogin.arubanetworks.com/auth/index.html/u',
+      data: {
+        user: '%u',
+        password: '%p',
+        cmd: 'authenticate',
+        Login: '繼續'
+      },
+    };
+    const school_studing = Object.assign(DEFAULT_SCHOOL_CONFIG, schools.find((e) => e.id === data.school_studing));
+    const account = new Account({
+      user: data.user,
+      pwd: data.password,
+      apiUrl: school_studing.apiUrl,
+      apiDataPattern: school_studing.data,
     });
+    visitor = ua('UA-87283965-1', data.user);
+    /* 登入 */
+    account.on('loginStart', () => {
+      visitor.event('login', 'login').send();
+      const noti = new Notification(process.env.PRODUCT_NAME, {
+        tag: 'loginStart',
+        body: `使用 ${data.user} 帳號\n登入 ${school_studing.name}`,
+      });
+      noti.on('click', openSettingPage);
+    });
+    account.on('loginCompleted', (status) => {
+      if (status.isSuccess) {
+        initUpdates();
+        visitor.event('login', 'success').send()
+      } else
+        visitor.event('login', 'failed').send();
+      const noti = new Notification((status.isSuccess) ? globalValue.STRING_LOGIN_SUCCESS : globalValue.STRING_LOGIN_FAILED, {
+        tag: 'loginCompleted',
+        body: status.message,
+      });
+      noti.onclick = openSettingPage;
+      noti.once('close');
+    });
+    account.login();
   });
+};
+
+/* 判斷是否不是第一個開啟的程序。 */
+const isSecondProcess = app.makeSingleInstance(() => /* 如果不是的話則讓主程序 login */ login());
+/* 不是的話順便關閉程序 */
+if (isSecondProcess)
+  process.exit();
+
+Promise.all([genUA(), readyPromise])
+  .then(login);

@@ -1,47 +1,62 @@
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="css/materialize.min.css">
-    </head>
-    <body>
-        <div class="container">
-            <form id="form">
-                <div class="input-field">
-                    <select class=" browser-default" id="school_place" name="school_place">
-                        <option value="" disabled selected>選擇所在的校園</option>
-                    </select>
-                </div>
-                <div class="input-field">
-                    <select class=" browser-default" id="school_studing" name="school_studing">
-                        <option value="" disabled selected>選擇所屬學校</option>
-                    </select>
-                </div>
-                <div class="input-field">
-                    <input name="id" placeholder="請輸入帳號(學號/信箱)" id="id" type="text" class="validate">
-                    <label for="id">帳號</label>
-                </div>
-                <div class="input-field">
-                    <input name="pwd" placeholder="請輸入密碼" id="pwd" type="password" class="validate">
-                    <label for="pwd">密碼</label>
-                </div>
-                <p>
-                    <input name="autologin" type="checkbox" id="autologin" disabled/>
-                    <label for="autologin">下次自動登入</label>
-                </p>
-                <button class="btn waves-effect waves-light" type="submit">儲存</button>
-            </form>
-        </div>
-        <!-- Insert this line above script imports  -->
-        <script>if (typeof module === 'object') {
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
+</head>
+
+<body style="color: #444; background: #f8f8f8;">
+    <div class="container" style="padding-top: 15px;">
+        <form id="form">
+            <div class="form-group">
+                <label for="school_studing">選擇所屬學校</label>
+                <select class="form-control" id="school_studing" name="school_studing" placeholder="選擇所屬學校"></select>
+            </div>
+            <label for="id_type">使用帳號類型</label>
+            <div id="id_type">
+                <label class="radio-inline">
+                    <input type="radio" name="id_type" id="id_type_normal" value="normal">校園帳號
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="id_type" id="id_type_email" value="email">校園信箱
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="id_type" id="id_type_itw" value="itw">iTaiwan帳號
+                </label>
+            </div>
+            <p></p>
+            <label for="user" id="id_label">帳號</label>
+            <div class="input-group">
+                <input type="text" id="user" class="form-control" name="user" placeholder="請輸入帳號(學號/信箱)" aria-describedby="realm">
+                <span class="input-group-addon" id="realm">@itw</span>
+            </div>
+            <div class="form-group">
+                <label for="pwd">密碼</label>
+                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="請輸入密碼">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="autologin" name="autologin">下次自動登入
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">儲存</button>
+        </form>
+    </div>
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
             window.module = module;
             module = undefined;
         }
-        </script>
-        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script src="setting.js"></script>
-        <!-- Insert this line after script imports -->
-        <script>if (window.module) module = window.module;</script>
-    </body>
+    </script>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="setting.js"></script>
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
+</body>
 
 </html>
