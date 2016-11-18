@@ -196,8 +196,15 @@
     "id": "1006",
     "name": "中國文化大學"
 }, {
-    "id": "1007",
-    "name": "逢甲大學"
+    "id" : "1007",
+    "name" : "逢甲大學",
+    "realm": "fcu.edu.tw",
+    "apiUrl" : "http://140.134.18.25/auth/index.html/u",
+    "data" : {
+        "user" : "%u",
+        "password" : "%p",
+        "Login" : "Logon"
+    }
 }, {
     "id": "1008",
     "name": "靜宜大學"
