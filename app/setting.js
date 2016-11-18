@@ -1,7 +1,7 @@
 const
   storage = require('electron-json-storage'),
   /* 讀取學校資訊清單 */
-  schools = require('./schools'),
+  units = require('./units'),
   form = document.forms[0],
   PRODUCT_NAME = require('./package.json').productName;
 
@@ -37,7 +37,7 @@ function disableIdSuffix() {
 function changeIdSuffix(suffix) {
   const
     selected = school_studing.value,
-    school_place = schools.find((school) => school.id === selected);
+    school_place = units.find((school) => school.id === selected);
   if (suffix)
     realmEle.innerText = '@' + suffix;
   else
@@ -53,7 +53,7 @@ function enableIdSuffix() {
 function hasRealm() {
   const
     selected = school_studing.value,
-    school_place = schools.find((school) => school.id === selected);
+    school_place = units.find((school) => school.id === selected);
   return school_place.realm;
 }
 
@@ -91,7 +91,7 @@ id_type_itw.onchange = (e) => {
 };
 
 /* 新增"其他"選項 */
-schools.push({
+units.push({
   id: '9999',
   name: '其他',
   apiUrl: 'http://securelogin.arubanetworks.com/auth/index.html/u',
@@ -104,11 +104,11 @@ schools.push({
 });
 
 /* 產生學校清單 */
-for (let i in schools) {
+for (let i in units) {
   const ele = document.createElement('option');
-  ele.value = schools[i].id;
-  ele.innerText = schools[i].name;
-  if (hasData(schools[i])) {
+  ele.value = units[i].id;
+  ele.innerText = units[i].name;
+  if (hasData(units[i])) {
     school_studing.add(ele.cloneNode(true));
   }
 }

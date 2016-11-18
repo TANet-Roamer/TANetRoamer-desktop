@@ -3,6 +3,7 @@ const
   EventEmitter = require('events'),
   Url = require('url'),
   fetch = require('node-fetch'),
+  log = require('npmlog'),
   globalValue = require('./globalValue');
 
 module.exports = class Account extends EventEmitter {
@@ -11,7 +12,7 @@ module.exports = class Account extends EventEmitter {
     super();
 
     /* initial*/
-    this._id = option.id;
+    this._user = option.user;
     this._pwd = option.pwd;
     this._apiUrl = option.apiUrl;
     this._apiDataPattern = option.apiDataPattern;
@@ -20,8 +21,9 @@ module.exports = class Account extends EventEmitter {
     /* 整理 post data */
     this._apiData = Object.assign({}, this._apiDataPattern)
     for (let i in this._apiDataPattern) {
+      /* 以帳號與密碼取代原本 value 為 %u 與 %p */
       if (this._apiDataPattern[i] === '%u')
-        this._apiData[i] = this._id;
+        this._apiData[i] = this._user;
       if (this._apiDataPattern[i] === '%p')
         this._apiData[i] = this._pwd;
     }
@@ -30,12 +32,18 @@ module.exports = class Account extends EventEmitter {
   /* 使用 API 登入。 */
   login() {
     this.emit('loginStart');
-    const searchParams = querystring.stringify(this._apiData);
-    return this._client(this._apiUrl, searchParams)
+    const urlencoded = querystring.stringify(this._apiData);
+    log.info('account.login()', 'login with: %j', urlencoded);
+    return this._client(this._apiUrl, urlencoded)
       .then((res) => {
-        const hash = decodeURI(new URL(res.url).search).replace(/^\?/, '').split('=');
+        log.verbose('account.login()', 'response: %j', res);
+        log.info('account.login()', 'response.url: %j', res.url);
+        const
+          hash = decodeURI(new URL(res.url).search).replace(/^\?/, ''),
+          query = querystring.parse(hash);
+        log.info('account.login()', 'response query: %j', query);
         let result = {};
-        switch (hash[1]) {
+        switch (query.errmsg) {
           case globalValue.LOGIN_SUCCESS:
             result = {
               isSuccess: true,
@@ -61,22 +69,26 @@ module.exports = class Account extends EventEmitter {
             };
             break;
         }
+        log.info('account.login()', 'result: %j', result);
         this.emit('loginCompleted', result);
         return result;
       }, () => {
+        log.info('account.login()', 'response error');
         const result = {
           isSuccess: false,
           message: globalValue.STRING_MSG_WRONG_SSID,
         };
+        log.info('account.login()', 'result: %j', result);
         this.emit('loginCompleted', result);
         return result;
       });
   }
 
-  _client(url, postData) {
+  _client(url, body) {
     return fetch(url, {
       method: 'post',
-      body: postData,
+      redirect: 'manual',
+      body: body,
     });
   }
 

@@ -49,7 +49,7 @@ Linux 的用戶請下載 tanetroamer-desktop-x.x.x-x86_64.[tar.xz/tar.gz/tar.bz2
 
 ## 開發
 
-### app/schools.json
+### app/units.json
 
 這個檔案是各校的設定檔，id 與 name 都已經準備好，就只差 url 與 data，url 為各校 WIFI 登入的 API 網址，data 則是傳送給 API 的資料，其中值為 %u 與 %p 的皆會被使用者設定的帳號與密碼取代。
 
