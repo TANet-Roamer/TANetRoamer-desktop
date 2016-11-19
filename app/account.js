@@ -6,7 +6,7 @@ const
   log = require('npmlog'),
   globalValue = require('./globalValue');
 
-module.exports = class Account extends EventEmitter {
+class Account extends EventEmitter {
 
   constructor(option) {
     super();
@@ -33,6 +33,7 @@ module.exports = class Account extends EventEmitter {
   login() {
     this.emit('loginStart');
     const urlencoded = querystring.stringify(this._apiData);
+    log.info('account.login()', 'login to: %j', this._apiUrl);
     log.info('account.login()', 'login with: %j', urlencoded);
     return this._client(this._apiUrl, urlencoded)
       .then((res) => {
@@ -61,16 +62,21 @@ module.exports = class Account extends EventEmitter {
             isSuccess: false,
             message: globalValue.STRING_MSG_ONLY_ONE_USER,
           };
+        log.debug('isSuccess', result.isSuccess);
         log.info('account.login()', 'result: %j', result);
+        log.info('account.login()', 'status: %j', isSuccess);
+        log.debug('isSuccess', result.isSuccess);
         this.emit('loginCompleted', result);
         return result;
-      }, () => {
+      }, (err) => {
+        log.verbose('account.login()', err)
         log.info('account.login()', 'response error');
         const result = {
           isSuccess: false,
           message: globalValue.STRING_MSG_WRONG_SSID,
         };
         log.info('account.login()', 'result: %j', result);
+        log.debug('isSuccess', result.isSuccess);
         this.emit('loginCompleted', result);
         return result;
       });
@@ -78,10 +84,20 @@ module.exports = class Account extends EventEmitter {
 
   _client(url, body) {
     return fetch(url, {
-      method: 'post',
-      redirect: 'manual',
-      body: body,
-    });
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        },
+        body: body,
+      })
+      .then((res) => {
+        if (res.ok)
+          return Promise.resolve(res);
+        else
+          return Promise.reject(res);
+      });
   }
 
 };
+
+module.exports = Account;

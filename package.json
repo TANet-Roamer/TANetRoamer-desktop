@@ -1,14 +1,18 @@
 {
   "scripts": {
-    "run": "electron app --enable-logging",
+    "run": "electron app",
+    "test": "mocha test/test.js",
     "pack": "build --dir",
     "dist": "build",
-    "release": "build && node release",
-    "test": "echo \"no test specified\""
+    "release": "build && node release"
   },
   "devDependencies": {
+    "body-parser": "^1.15.2",
     "electron": "^1.4.7",
-    "electron-builder": "^8.6.0"
+    "electron-builder": "^8.6.0",
+    "express": "^4.14.0",
+    "multer": "^1.2.0",
+    "npmlog": "^4.0.1"
   },
   "directories": {
     "app": "app"
@@ -35,16 +39,19 @@
         "AppImage"
       ]
     },
-    "publish": [{
-      "provider": "github",
-      "owner": "ALiangLiang",
-      "repo": "TANetRoamer-desktop",
-      "vPrefixedTagName": true
-    }, {
-      "provider": "generic",
-      "owner": "ALiangLiang",
-      "url": "https://gentle-savannah-86014.herokuapp.com/"
-    }]
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ALiangLiang",
+        "repo": "TANetRoamer-desktop",
+        "vPrefixedTagName": true
+      },
+      {
+        "provider": "generic",
+        "owner": "ALiangLiang",
+        "url": "https://gentle-savannah-86014.herokuapp.com/"
+      }
+    ]
   },
   "dependencies": {}
 }
