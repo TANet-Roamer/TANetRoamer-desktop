@@ -31,7 +31,7 @@ process.argv.forEach(function(val, index, array) {
 });
 /* 儲存產品名稱與當前版本 */
 process.env.PRODUCT_NAME = require('./package.json').productName;
-process.env.PRODUCT_VERSION = `v${require('./package.json').version}`;
+process.env.PRODUCT_VERSION = `v${app.getVersion()}`;
 log.verbose('app start', 'product name: %j version: %j', process.env.PRODUCT_NAME, process.env.PRODUCT_VERSION);
 
 let win, visitor;

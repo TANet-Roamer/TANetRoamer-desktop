@@ -38,37 +38,29 @@ module.exports = class Account extends EventEmitter {
       .then((res) => {
         log.verbose('account.login()', 'response: %j', res);
         log.info('account.login()', 'response.url: %j', res.url);
-        const
-          hash = decodeURI(new URL(res.url).search).replace(/^\?/, ''),
-          query = querystring.parse(hash);
+        const query = Url.parse(res.url, true).query;
         log.info('account.login()', 'response query: %j', query);
         let result = {};
-        switch (query.errmsg) {
-          case globalValue.LOGIN_SUCCESS:
-            result = {
-              isSuccess: true,
-              message: globalValue.STRING_MSG_LOGIN_SUCCESS,
-            };
-            break;
-          case globalValue.LOGIN_WRONG_PASSWORD:
-            result = {
-              isSuccess: false,
-              message: globalValue.STRING_MSG_WRONG_PASSWORD,
-            };
-            break;
-          case globalValue.LOGIN_NO_INFORMATION:
-            result = {
-              isSuccess: false,
-              message: '',
-            };
-            break;
-          case globalValue.ONLY_ONE_USER:
-            result = {
-              isSuccess: false,
-              message: globalValue.STRING_MSG_ONLY_ONE_USER,
-            };
-            break;
-        }
+        if (query.errmsg == globalValue.LOGIN_SUCCESS) /* undefined == null */
+          result = {
+            isSuccess: true,
+            message: globalValue.STRING_MSG_LOGIN_SUCCESS,
+          };
+        else if (query.errmsg === globalValue.LOGIN_WRONG_PASSWORD)
+          result = {
+            isSuccess: false,
+            message: globalValue.STRING_MSG_WRONG_PASSWORD,
+          };
+        else if (query.errmsg === globalValue.LOGIN_NO_INFORMATION)
+          result = {
+            isSuccess: false,
+            message: '',
+          };
+        else if (query.errmsg === globalValue.ONLY_ONE_USER)
+          result = {
+            isSuccess: false,
+            message: globalValue.STRING_MSG_ONLY_ONE_USER,
+          };
         log.info('account.login()', 'result: %j', result);
         this.emit('loginCompleted', result);
         return result;
