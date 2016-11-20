@@ -13,7 +13,8 @@
     "electron-builder": "^8.6.0",
     "express": "^4.14.0",
     "multer": "^1.2.0",
-    "npmlog": "^4.0.1"
+    "npmlog": "^4.0.1",
+    "spectron": "^3.4.0"
   },
   "directories": {
     "app": "app"
@@ -40,16 +41,19 @@
         "AppImage"
       ]
     },
-    "publish": [{
-      "provider": "github",
-      "owner": "ALiangLiang",
-      "repo": "TANetRoamer-desktop",
-      "vPrefixedTagName": true
-    }, {
-      "provider": "generic",
-      "owner": "ALiangLiang",
-      "url": "https://gentle-savannah-86014.herokuapp.com/"
-    }]
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ALiangLiang",
+        "repo": "TANetRoamer-desktop",
+        "vPrefixedTagName": true
+      },
+      {
+        "provider": "generic",
+        "owner": "ALiangLiang",
+        "url": "https://gentle-savannah-86014.herokuapp.com/"
+      }
+    ]
   },
   "dependencies": {}
 }
