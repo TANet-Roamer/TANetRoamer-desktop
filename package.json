@@ -1,6 +1,7 @@
 {
   "scripts": {
     "run": "electron app",
+    "postinstall": "npm i mocha -g",
     "test": "mocha test/test.js",
     "pack": "build --dir",
     "dist": "build",
@@ -39,19 +40,16 @@
         "AppImage"
       ]
     },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "ALiangLiang",
-        "repo": "TANetRoamer-desktop",
-        "vPrefixedTagName": true
-      },
-      {
-        "provider": "generic",
-        "owner": "ALiangLiang",
-        "url": "https://gentle-savannah-86014.herokuapp.com/"
-      }
-    ]
+    "publish": [{
+      "provider": "github",
+      "owner": "ALiangLiang",
+      "repo": "TANetRoamer-desktop",
+      "vPrefixedTagName": true
+    }, {
+      "provider": "generic",
+      "owner": "ALiangLiang",
+      "url": "https://gentle-savannah-86014.herokuapp.com/"
+    }]
   },
   "dependencies": {}
 }

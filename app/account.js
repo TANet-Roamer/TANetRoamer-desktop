@@ -6,12 +6,19 @@ const
   log = require('npmlog'),
   globalValue = require('./globalValue');
 
+/**
+ * @class Account 帳戶
+ */
 class Account extends EventEmitter {
 
+  /**
+   * @constructs Account
+   * @param {Object} option
+   */
   constructor(option) {
     super();
 
-    /* initial*/
+    /* 初始化*/
     this._user = option.user;
     this._pwd = option.pwd;
     this._apiUrl = option.apiUrl;
@@ -29,7 +36,10 @@ class Account extends EventEmitter {
     }
   }
 
-  /* 使用 API 登入。 */
+  /**
+   * 使用 API 登入。
+   * @return {Promise} 登入結果。
+   */
   login() {
     this.emit('loginStart');
     const urlencoded = querystring.stringify(this._apiData);
@@ -39,6 +49,7 @@ class Account extends EventEmitter {
       .then((res) => {
         log.verbose('account.login()', 'response: %j', res);
         log.info('account.login()', 'response.url: %j', res.url);
+        /* 從轉址的 query 中，判斷此次登入的結果 */
         const query = Url.parse(res.url, true).query;
         log.info('account.login()', 'response query: %j', query);
         let result = {};
@@ -62,7 +73,6 @@ class Account extends EventEmitter {
             isSuccess: false,
             message: globalValue.STRING_MSG_ONLY_ONE_USER,
           };
-        log.debug('isSuccess', result.isSuccess);
         log.info('account.login()', 'result: %j', result);
         log.info('account.login()', 'status: %j', isSuccess);
         log.debug('isSuccess', result.isSuccess);
@@ -91,6 +101,7 @@ class Account extends EventEmitter {
         body: body,
       })
       .then((res) => {
+        /* 當出現例如 404 Not found 的情況，導至 reject flow。 */
         if (res.ok)
           return Promise.resolve(res);
         else

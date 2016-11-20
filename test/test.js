@@ -25,7 +25,7 @@ describe('application launch', function() {
     }
   });
 
-  it('show setting page', function() {
+  it('顯示設定頁面', function() {
     this.app = new Application({
       path: electron,
       args: ['app', '--enable-logging', '--no-login'],
@@ -43,7 +43,7 @@ describe('application launch', function() {
       .catch((err) => log.error('Test', err));
   });
 
-  it('login success', function() {
+  it('登入成功', function() {
     this.app = new Application({
       path: electron,
       args: ['app', '--enable-logging', '-l', 'debug', '--user', 'testuser', '--pwd', 'testpwd', '--api-url', 'http://localhost:8012/auth/index.html/u'],
@@ -59,7 +59,7 @@ describe('application launch', function() {
       });
   });
 
-  it('login failed with wrong password', function() {
+  it('登入失敗，因為錯誤的帳密', function() {
     this.app = new Application({
       path: electron,
       args: ['app', '--enable-logging', '-l', 'debug', '--user', 'testuser', '--pwd', 'wrong', '--api-url', 'http://localhost:8012/auth/index.html/u'],
@@ -75,7 +75,7 @@ describe('application launch', function() {
       });
   });
 
-  it('login failed with wrong url or SSID', function() {
+  it('登入失敗，因為錯誤的 url 或 SSID', function() {
     this.app = new Application({
       path: electron,
       args: ['app', '--enable-logging', '-l', 'debug', '--user', 'testuser', '--pwd', 'testpwd', '--api-url', 'http://localhost:8012/auth/index.html/wrong'],
@@ -92,12 +92,14 @@ describe('application launch', function() {
   });
 });
 
+/* 延時 */
 function delay(time) {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(), time);
   });
 }
 
+/* 檢驗兩個陣列是否全相同 */
 function loopMatch(arr, target) {
   for (let i in arr)
     if (arr[i] !== target[i])

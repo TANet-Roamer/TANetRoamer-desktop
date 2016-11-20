@@ -14,12 +14,11 @@ const
   ua = require('universal-analytics'),
   isOnline = require('is-online'),
   log = require('npmlog'),
-  program = require('commander'),
-  genUuid = require('./uuid-v4');
+  program = require('commander');
 
 const
-  units = require('./units.json'),
-  Account = require('./account.js'),
+  units = require('./units'),
+  Account = require('./account'),
   globalValue = require('./globalValue');
 
 /* 初始化 */
@@ -45,11 +44,15 @@ let win;
 
 const main = {
 
+  /**
+   * @function initUpdates 初始化自動更新元件
+   */
   initUpdates: () => {
+    /* 檢查更新 */
     autoUpdater.on('checking-for-update', () => {
       log.info('auto-update', 'checking-for-update');
     });
-
+    /* 檢查到有新版本可以更新 */
     autoUpdater.on('update-available', () => {
       log.info('auto-update', 'update-available');
       const noti = new Notification('TANet Roamer 校園網路漫遊器', {
@@ -57,11 +60,11 @@ const main = {
       });
       noti.once('click', () => main.openSettingPage());
     });
-
+    /* 沒有發現新版本 */
     autoUpdater.on('update-not-available', () => {
       log.info('auto-update', 'update-not-available');
     });
-
+    /* 已下載完新版本安裝檔 */
     autoUpdater.on('update-downloaded', (a, b, version, d, e, quitAndInstall) => {
       log.info('auto-update', 'update-downloaded');
       new Notification('TANet Roamer 校園網路漫遊器', {
@@ -69,10 +72,14 @@ const main = {
       });
       quitAndInstall();
     });
-
+    /* 檢查更新 */
     autoUpdater.checkForUpdates();
   },
 
+  /**
+   * @function openSettingPage 開啟設定頁面
+   * @return {Promise} 設定頁面顯示時
+   */
   openSettingPage: () => {
     log.info('openSettingPage');
     win = new BrowserWindow({
@@ -98,12 +105,10 @@ const main = {
     });
   },
 
-  test: () => {
-    return new Promise((resolve, reject) => {
-      return resolve(123)
-    });
-  },
-
+  /**
+   * @function getUserData 從 storage 中取得使用者資料。
+   * @return {Promise} [取得資料時]
+   */
   getUserData: () => {
     return new Promise((resolve, reject) => {
       storage.get('user', (err, data) => {
@@ -111,9 +116,10 @@ const main = {
       });
     });
   },
+
   /**
-   * [login 登入]
-   * @return {[Promise]} [第一個參數是登入狀態，成功為 true，失敗為 false]
+   * @function login 登入
+   * @return {Promise} 第一個參數是登入狀態，成功為 true，失敗為 false
    */
   login: () => {
     log.info('login');
@@ -122,6 +128,10 @@ const main = {
         log.info('login', 'get user data: %j %j', user, pwd);
         if ((!user || !pwd) && program.configPage)
           return main.openSettingPage();
+        /**
+         * @const DEFAULT_SCHOOL_CONFIG 預設學校設定，基本上大部分的學校設定都是這樣。
+         * @type {Object}
+         */
         const DEFAULT_SCHOOL_CONFIG = {
           id: '9999',
           name: '',
@@ -133,6 +143,10 @@ const main = {
             Login: '繼續'
           },
         };
+        /**
+         * @const school_studing 尋找所在學校的資料
+         * @type {Object}
+         */
         const school_studing = Object.assign(DEFAULT_SCHOOL_CONFIG, units.find((e) => e.id === data.school_studing));
         log.verbose('login', 'school studing: %j', school_studing);
         const account = new Account({
@@ -153,8 +167,10 @@ const main = {
           });
           account.on('loginCompleted', (status) => {
             log.info('loginCompleted');
+            /* 檢查是否連上網際網路。 */
             isOnline(function(err, online) {
               log.info('loginCompleted', 'is online: %j', online);
+              /* 如果連上網路，則初始化自動更新元件。 */
               if (online)
                 main.initUpdates();
             });
@@ -183,7 +199,7 @@ if (isSecondProcess)
   process.exit();
 
 app.on('ready', () => {
-  log.info('ready', 'app ready.');
+  log.info('ready', 'App ready.');
   if (program.configPage)
     main.openSettingPage();
   if (program.login)
