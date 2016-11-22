@@ -111,8 +111,11 @@ const main = {
    */
   getUserData: () => {
     return new Promise((resolve, reject) => {
-      storage.get('user', (err, data) => {
-        return resolve([program.user || data.user, program.pwd || data.pwd, data]);
+      storage.get('setting', (err, data) => {
+        const
+          user = program.user || data.accounts[data.id_type].user,
+          pwd = program.pwd || data.accounts[data.id_type].pwd;
+        return resolve([user, pwd, data]);
       });
     });
   },
@@ -161,7 +164,7 @@ const main = {
             log.info('loginStart');
             const noti = new Notification(process.env.PRODUCT_NAME, {
               tag: 'loginStart',
-              body: `使用 ${user} 帳號\n登入 ${school_studing.name}`,
+              body: `使用帳號 ${user} \n登入 ${school_studing.name}`,
             });
             noti.on('click', main.openSettingPage);
           });

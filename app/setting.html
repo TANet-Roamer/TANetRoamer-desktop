@@ -15,25 +15,47 @@
             </div>
             <label for="id_type">使用帳號類型</label>
             <div id="id_type">
-                <label class="radio-inline">
-                    <input type="radio" name="id_type" id="id_type_normal" value="normal">校園帳號
+                <label class="radio-inline id_type">
+                    <input type="radio" name="id_type" id="id_type_normal" class="account_type_select" data-target="group_normal" value="normal" selected>校園帳號
                 </label>
-                <label class="radio-inline">
-                    <input type="radio" name="id_type" id="id_type_email" value="email">校園信箱
+                <label class="radio-inline id_type">
+                    <input type="radio" name="id_type" id="id_type_email" class="account_type_select" data-target="group_email" value="email">校園信箱
                 </label>
-                <label class="radio-inline">
-                    <input type="radio" name="id_type" id="id_type_itw" value="itw">iTaiwan帳號
+                <label class="radio-inline id_type">
+                    <input type="radio" name="id_type" id="id_type_itw" class="account_type_select" data-target="group_itw" value="itw">iTaiwan帳號
                 </label>
             </div>
-            <p></p>
-            <label for="user" id="id_label">帳號</label>
-            <div class="input-group">
-                <input type="text" id="user" class="form-control" name="user" placeholder="請輸入帳號(學號/信箱)" aria-describedby="realm">
-                <span class="input-group-addon" id="realm">@itw</span>
+            <div id="group_normal">
+                <label for="user">帳號</label>
+                <div class="form-group">
+                    <input type="text" id="user" class="form-control" name="normal.user" placeholder="請輸入帳號" aria-describedby="realm">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">密碼</label>
+                    <input type="password" class="form-control" id="pwd" name="normal.pwd" placeholder="請輸入密碼">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="pwd">密碼</label>
-                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="請輸入密碼">
+            <div id="group_email" style="display:none">
+                <label for="user">帳號</label>
+                <div class="input-group">
+                    <input type="text" id="user" class="form-control" name="email.user" placeholder="請輸入信箱" aria-describedby="realm">
+                    <span class="input-group-addon" id="realm">@mail.ncue.edu.tw</span>
+                </div>
+                <div class="form-group">
+                    <label for="email_pwd">密碼</label>
+                    <input type="password" class="form-control" id="email_pwd" name="email.pwd" placeholder="請輸入密碼">
+                </div>
+            </div>
+            <div id="group_itw" style="display:none">
+                <label for="user">帳號</label>
+                <div class="input-group">
+                    <input type="text" id="user" class="form-control" name="itw.user" placeholder="請輸入 iTaiwan 帳號" aria-describedby="realm">
+                    <span class="input-group-addon">@itw</span>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">密碼</label>
+                    <input type="password" class="form-control" id="pwd" name="itw.pwd" placeholder="請輸入密碼">
+                </div>
             </div>
             <div class="checkbox">
                 <label>
