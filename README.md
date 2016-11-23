@@ -79,3 +79,7 @@ Linux 的用戶請下載 tanetroamer-desktop-x.x.x-x86_64.[tar.xz/tar.gz/tar.bz2
 - [ ] mac 版本支援。
 - [x] 增加測試 scripts。
 - [ ] 憑證驗證，防止偽造 WIFI 熱點。
+
+## 聲明
+
+非[TANet無線網路漫遊交換中心](https://roamingcenter.tanet.edu.tw/)製作，為學生自行發起的開源專案。

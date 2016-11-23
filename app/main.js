@@ -37,8 +37,8 @@ program
   .option('-a, --api-url [value]', '以設定的值作為 API 網址。', /^http.*/, null)
   .option('-f, --form-data [value]', '以設定的值作為 FormData，以 urlencoded 表示。');
 /* 在正式產品中，取消 commander 功能。 */
-if (process.argv.length > 1)
-  program.parse(process.argv);
+// if (process.argv.length > 1)
+program.parse(process.argv);
 
 log.addLevel('debug', 1500, {}, 'DEBUG'); /* 增加 debug 層，用來在測試中判斷程式狀態。 */
 log.level = program.npmlogLevel; /* 設定 log 層級。 */
@@ -61,7 +61,7 @@ const main = {
       log.info('auto-update', 'update-available');
       const noti = new Notification('TANet Roamer 校園網路漫遊器', {
         body: '發現新的版本，下載新版本安裝檔中。',
-        icon: "../../../build/logo.png",
+        icon: '../../../build/icon.png',
       });
       noti.once('click', () => main.openSettingPage());
     });
@@ -74,7 +74,7 @@ const main = {
       log.info('auto-update', 'update-downloaded');
       new Notification('TANet Roamer 校園網路漫遊器', {
         body: `安裝檔下載完成，開始安裝新版本 v${version}`,
-        icon: "../../../build/logo.png",
+        icon: '../../../build/icon.png',
       });
       quitAndInstall();
     });
@@ -92,7 +92,7 @@ const main = {
       width: 360,
       height: 440,
       title: process.env.PRODUCT_NAME,
-      icon: 'build/logo.ico',
+      icon: 'build/icon.ico',
       resizable: false,
       defaultEncoding: 'UTF-8',
     });
@@ -172,7 +172,7 @@ const main = {
             const noti = new Notification(process.env.PRODUCT_NAME, {
               tag: 'loginStart',
               body: `使用帳號 ${user} \n登入 ${school_studing.name}`,
-              icon: "../../../build/logo.png",
+              icon: '../../../build/icon.png',
             });
             noti.on('click', main.openSettingPage);
           });
@@ -188,7 +188,7 @@ const main = {
             const noti = new Notification((status.isSuccess) ? globalValue.STRING_LOGIN_SUCCESS : globalValue.STRING_LOGIN_FAILED, {
               tag: 'loginCompleted',
               body: status.message,
-              icon: "../../../build/logo.png",
+              icon: '../../../build/icon.png',
             });
             noti.onclick = main.openSettingPage;
             return resolve(status.isSuccess);

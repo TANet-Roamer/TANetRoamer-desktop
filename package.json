@@ -23,8 +23,8 @@
     "productName": "TANet Roamer 校園網路漫遊器",
     "appId": "asia.ALiangLiang.TANetRoamer",
     "nsis": {
-      "installerHeader": "build/logo.png",
-      "installerHeaderIcon": "build/logo.ico",
+      "installerHeader": "build/icon.png",
+      "installerHeaderIcon": "build/icon.ico",
       "license": "LICENSE",
       "language": "1028"
     },
