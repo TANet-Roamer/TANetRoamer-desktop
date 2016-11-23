@@ -23,10 +23,13 @@
     "productName": "TANet Roamer 校園網路漫遊器",
     "appId": "asia.ALiangLiang.TANetRoamer",
     "nsis": {
+      "installerHeader": "build/logo.png",
+      "installerHeaderIcon": "build/logo.ico",
       "license": "LICENSE",
       "language": "1028"
     },
     "win": {
+      "icon": "build/logo.ico",
       "legalTrademarks": "ALiangLiang",
       "target": [
         "nsis"
@@ -41,19 +44,16 @@
         "AppImage"
       ]
     },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "ALiangLiang",
-        "repo": "TANetRoamer-desktop",
-        "vPrefixedTagName": true
-      },
-      {
-        "provider": "generic",
-        "owner": "ALiangLiang",
-        "url": "https://gentle-savannah-86014.herokuapp.com/"
-      }
-    ]
+    "publish": [{
+      "provider": "github",
+      "owner": "ALiangLiang",
+      "repo": "TANetRoamer-desktop",
+      "vPrefixedTagName": true
+    }, {
+      "provider": "generic",
+      "owner": "ALiangLiang",
+      "url": "https://gentle-savannah-86014.herokuapp.com/"
+    }]
   },
   "dependencies": {}
 }

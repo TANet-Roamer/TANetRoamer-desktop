@@ -73,9 +73,9 @@ Linux 的用戶請下載 tanetroamer-desktop-x.x.x-x86_64.[tar.xz/tar.gz/tar.bz2
 ### TODO
 
 - [ ] 偵測 SSID 變更，全自動登入。
-- [ ] 產品 icon。
+- [x] 產品 icon。
 - [x] 自動更新。
 - [ ] 安全記憶帳號密碼。
 - [ ] mac 版本支援。
-- [ ] 增加測試 scripts。
+- [x] 增加測試 scripts。
 - [ ] 憑證驗證，防止偽造 WIFI 熱點。

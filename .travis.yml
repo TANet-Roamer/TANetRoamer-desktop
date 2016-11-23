@@ -34,7 +34,8 @@ before_script:
   - APP_SHORTNAME="$(node productShortName)" # eg TANet-Roamer
 
 script:
-  - npm test
+  - echo "no test scripts"
+  #- npm test
 
 before_deploy:
   - npm run dist # build

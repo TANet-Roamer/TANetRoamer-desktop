@@ -34,6 +34,7 @@ form.onsubmit = (e) => {
     new Notification(PRODUCT_NAME, {
         tag: 'settingPageClosed',
         body: `已儲存您的設定，下次將使用「${(formJson.id_type === 'normal')?'校園帳號':(formJson.id_type === 'email')?'校園信箱':'iTaiwan帳號'}」登入`,
+        icon: "../build/logo.png",
       })
       // .addEventListener('show', () => window.close());
   });
