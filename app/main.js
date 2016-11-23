@@ -37,8 +37,8 @@ program
   .option('-a, --api-url [value]', '以設定的值作為 API 網址。', /^http.*/, null)
   .option('-f, --form-data [value]', '以設定的值作為 FormData，以 urlencoded 表示。');
 /* 在正式產品中，取消 commander 功能。 */
-// if (process.argv.length > 1)
-program.parse(process.argv);
+if (process.argv.length > 1)
+  program.parse(process.argv);
 
 log.addLevel('debug', 1500, {}, 'DEBUG'); /* 增加 debug 層，用來在測試中判斷程式狀態。 */
 log.level = program.npmlogLevel; /* 設定 log 層級。 */
