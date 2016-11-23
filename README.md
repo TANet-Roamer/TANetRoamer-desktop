@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/ALiangLiang/TANetRoamer-desktop.svg?branch=master)](https://travis-ci.org/ALiangLiang/TANetRoamer-desktop "Travis CI") [![Build status](https://ci.appveyor.com/api/projects/status/96rf3aqlwwc4es93?svg=true)](https://ci.appveyor.com/project/ALiangLiang/tanetroamer-desktop "AppVeyor") [![GitHub release](https://img.shields.io/github/release/ALiangLiang/TANetRoamer-desktop.svg)](https://github.com/ALiangLiang/TANetRoamer-desktop/releases/latest "最新版本") [![Github All Releases](https://img.shields.io/github/downloads/ALiangLiang/TANetRoamer-desktop/total.svg)](https://github.com/ALiangLiang/TANetRoamer-desktop/releases/latest "下載次數") [![license](https://img.shields.io/github/license/ALiangLiang/TANetRoamer-desktop.svg)](https://github.com/ALiangLiang/TANetRoamer-desktop/blob/master/LICENSE "MIT開源協議")
 
+<img src="build/logo.png" alt="logo" style="width: 300px;"/>
+
 以最方便的操作流程，取得全台灣的 TANetRoaming WIFI 的漫遊認證。
 
 ![設定視窗](build/screenshot.png) ![登入通知](build/screenshot2.png)
@@ -45,6 +47,7 @@ Linux 的用戶請下載 tanetroamer-desktop-x.x.x-x86_64.[tar.xz/tar.gz/tar.bz2
 - 國立中興大學 - ALiangLiang
 - 國立中央大學 - ALiangLiang
 - 國立中正大學 - BePsvPT (2016/11/13)
+- 逢甲大學 - vongola12324 (2016/11/15)
 - (其他校園待測試)
 
 ## 開發
