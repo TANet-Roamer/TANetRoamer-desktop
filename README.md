@@ -4,7 +4,7 @@
 
 以最方便的操作流程，取得全台灣的 TANetRoaming WIFI 的漫遊認證。
 
-![設定視窗](img/screenshot.png) ![登入通知](img/screenshot2.png)
+![設定視窗](build/screenshot.png) ![登入通知](build/screenshot2.png)
 
 目前需要各校同學的協助，讓大家都可以省下輸入帳號密碼的時間。協助請參考[開發](#開發 "開發")。
 
