@@ -29,7 +29,7 @@
       "language": "1028"
     },
     "win": {
-      "icon": "build/logo.ico",
+      "icon": "build/icon.ico",
       "legalTrademarks": "ALiangLiang",
       "target": [
         "nsis"
