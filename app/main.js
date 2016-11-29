@@ -18,7 +18,7 @@ const
   program = require('commander');
 
 const
-  units = require('./units'),
+  units = require('./cfg/units'),
   Account = require('./account'),
   globalValue = require('./globalValue');
 

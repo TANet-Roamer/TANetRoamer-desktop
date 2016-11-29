@@ -1,7 +1,7 @@
 const
   storage = require('electron-json-storage'),
   /* 讀取單位資訊清單 */
-  units = require('./units'),
+  units = require('./cfg/units'),
   form = document.forms[0],
   PRODUCT_NAME = require('./package.json').productName;
 

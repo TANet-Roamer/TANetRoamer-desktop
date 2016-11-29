@@ -26,6 +26,7 @@ function setReturnTo(req, res, next) {
   next();
 }
 app.get('/auth/index.html/u', function(req, res) {
+  log.info('Test server');
   res.send('OK');
 });
 app.post('/auth/index.html/u', function(req, res) {
